@@ -2,7 +2,7 @@ import {
   IFriend, 
   IFullName, 
   GenderType 
-} from "./my-friend.interface";
+} from './my-friend.interface';
 
 class Name implements IFullName {
   constructor(

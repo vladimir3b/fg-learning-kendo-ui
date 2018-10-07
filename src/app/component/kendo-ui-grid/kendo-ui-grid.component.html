@@ -3,6 +3,38 @@
   [pageSize]="pageSize"
   [skip]="skip"
   [pageable]="true"  
+  [resizable]="true"
+  [reorderable]="true"
+  [sortable]="true"
   (pageChange)="pageChange($event)">
-  <kendo-grid-column></kendo-grid-column>
+  <kendo-grid-column  
+    [headerClass]="['text-white', 'bg-info']"
+    [headerStyle]="{ 'font-weight': 'bolder' }"
+    title="First Name"
+    field="name.firstName">
+  </kendo-grid-column>
+  <kendo-grid-column 
+    [headerClass]="['text-white', 'bg-primary']"
+    [headerStyle]="{ 'font-weight': 'bolder' }"    
+    title="Last Name"
+    field="name.lastName">
+  </kendo-grid-column>
+  <kendo-grid-column 
+    [headerClass]="['text-white', 'bg-info']"
+    [headerStyle]="{ 'font-weight': 'bolder' }"  
+    [minResizableWidth]="60"  
+    title="Age"
+    field="age">
+  </kendo-grid-column>
+  <kendo-grid-column 
+    [headerClass]="['text-white', 'bg-primary']"
+    [headerStyle]="{ 'font-weight': 'bolder' }" 
+    title="Gender"
+    field="gender">
+  </kendo-grid-column> 
+  <ng-template kendoPagerTemplate>
+    <kendo-pager-prev-buttons class="text-danger bg-warning"></kendo-pager-prev-buttons>
+    <kendo-pager-next-buttons class="text-info bg-warning"></kendo-pager-next-buttons>
+    <kendo-pager-info class="text-success"></kendo-pager-info>
+  </ng-template>
 </kendo-grid>

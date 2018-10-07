@@ -14,8 +14,6 @@ import { HomeComponent } from './component/home/home.component';
 import { KendoUiGridComponent } from './component/kendo-ui-grid/kendo-ui-grid.component';
 
 
-
-
 @NgModule({
   declarations: [
     KendoUiWindowComponent,
