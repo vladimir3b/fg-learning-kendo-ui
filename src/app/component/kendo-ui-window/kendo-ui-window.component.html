@@ -1,0 +1,43 @@
+<div class="example-wrapper">
+  <button     
+    class="btn btn-warning btn-lg"
+    *ngIf="!opened" 
+    (click)="open()">
+    Open window
+  </button>
+  <p *ngIf="dataSaved">Data has been saved</p>
+  <kendo-window     
+    *ngIf="opened" (close)="close()" 
+    [minWidth]="250" 
+    [width]="450">
+    <kendo-window-titlebar class="bg-info p-1 pl-3">
+        <div class="k-window-title">
+          Enter user data 
+        </div>
+      <button kendoWindowMinimizeAction></button>    
+      <button kendoWindowMaximizeAction></button>      
+      <button kendoWindowCloseAction></button> 
+    </kendo-window-titlebar>  
+
+  <form class="k-form">
+      <fieldset>
+          <legend>User Details</legend>
+
+          <label class="k-form-field">
+              <span>First Name</span>
+              <input class="k-textbox" placeholder="Your Name" />
+          </label>
+          <label class="k-form-field">
+              <span>Last Name</span>
+              <input class="k-textbox" placeholder="Your Last Name" />
+          </label>
+      </fieldset>
+
+      <div class="text-right">
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="close()">Cancel</button>&nbsp;
+          <button type="button" class="btn btn-info btn-sm" (click)="submit()">Submit</button>
+      </div>
+  </form>
+
+  </kendo-window>
+</div>

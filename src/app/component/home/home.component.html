@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li 
+    *ngFor="let route of routes"
+    class="list-group-item">
+    <button 
+      class="btn btn-link" 
+      routerLink="/{{ route.path }}">
+      {{ route.caption }}
+    </button>
+  </li>
+</ul>
