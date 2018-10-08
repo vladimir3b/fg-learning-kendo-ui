@@ -1,4 +1,19 @@
 
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap/scss/_variables.scss';
 @import "~@progress/kendo-theme-default/scss/all";
-// @import "~@progress/kendo-theme-bootstrap/scss/all";
+
+$orderArrowColor: $warning;
+
+.k-grid-header .k-i-sort-asc-sm::before {
+  content: "▲";
+  color: $orderArrowColor !important;
+  font-size: 25px;
+}
+.k-grid-header .k-i-sort-desc-sm::before {
+  content: "▼";
+  color: $orderArrowColor !important; 
+  font-size: 25px;
+}
+
+

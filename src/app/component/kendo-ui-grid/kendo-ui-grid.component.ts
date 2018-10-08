@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { State } from '@progress/kendo-data-query';
+import { State, SortDescriptor, orderBy } from '@progress/kendo-data-query';
 import { 
   GridDataResult,
   DataStateChangeEvent,
-  PageChangeEvent
+  PageChangeEvent,
+  RowClassArgs
 } from '@progress/kendo-angular-grid';
 
 import { MY_FRIENDS } from '../../data/my-friends.data';
@@ -23,25 +24,42 @@ export class KendoUiGridComponent implements OnInit {
   public pageSize = 10;
   public skip = 0;
   private data: Object[];
-
+  public multiple = false;
+  public allowUnsort = true;
+  public sort: Array<SortDescriptor> = [];
   private items: any[] = this.myFriends;
 
   constructor() {
-      this.loadItems();
+      this.loadData();
   }
   
   ngOnInit() {}
 
   public pageChange(event: PageChangeEvent): void {
       this.skip = event.skip;
-      this.loadItems();
+      this.loadData();
   }
 
-  private loadItems(): void {
-      this.gridView = {
-          data: this.items.slice(this.skip, this.skip + this.pageSize),
-          total: this.items.length
-      };
+  public sortChange(sort: SortDescriptor[]): void {
+    this.sort = sort;  
+    this.loadData();
+  }
+
+  private loadData(): void {
+    this.gridView = {
+        data: orderBy(this.items, this.sort).slice(this.skip, this.skip + this.pageSize),
+        total: this.items.length
+    };
+  }
+
+
+  private colorRows(context: RowClassArgs): Object {
+    return {
+      'bg-light': context.index % 2 === 0,
+      'text-dark': context.index % 2 === 0,
+      'bg-secondary': context.index % 2 !== 0,
+      'text-light': context.index % 2 !== 0
+    };
   }
 
 }

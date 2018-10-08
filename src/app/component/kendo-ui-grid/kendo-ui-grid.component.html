@@ -5,29 +5,36 @@
   [pageable]="true"  
   [resizable]="true"
   [reorderable]="true"
-  [sortable]="true"
+  [sortable]="{
+    allowUnsort: allowUnsort,
+    mode: multiple ? 'multiple' : 'single'
+  }"
+  [sort]="sort"
+  [rowClass]="colorRows"
+  (sortChange)="sortChange($event)"
   (pageChange)="pageChange($event)">
+  <!-- font for the sorting order can be changed only in general styles.scss -->
   <kendo-grid-column  
-    [headerClass]="['text-white', 'bg-info']"
+    [headerClass]="['text-white', 'bg-info', 'h5', 'pt-3', 'pb-3']"
     [headerStyle]="{ 'font-weight': 'bolder' }"
     title="First Name"
     field="name.firstName">
   </kendo-grid-column>
   <kendo-grid-column 
-    [headerClass]="['text-white', 'bg-primary']"
+    [headerClass]="[ 'text-white', 'bg-info', 'h5', 'pt-3', 'pb-3']"
     [headerStyle]="{ 'font-weight': 'bolder' }"    
     title="Last Name"
     field="name.lastName">
   </kendo-grid-column>
   <kendo-grid-column 
-    [headerClass]="['text-white', 'bg-info']"
+    [headerClass]="['text-white', 'bg-info', 'h5', 'pt-3', 'pb-3']"
     [headerStyle]="{ 'font-weight': 'bolder' }"  
     [minResizableWidth]="60"  
     title="Age"
     field="age">
   </kendo-grid-column>
   <kendo-grid-column 
-    [headerClass]="['text-white', 'bg-primary']"
+    [headerClass]="['text-white', 'bg-info', 'h5', 'pt-3', 'pb-3']"
     [headerStyle]="{ 'font-weight': 'bolder' }" 
     title="Gender"
     field="gender">
@@ -37,4 +44,5 @@
     <kendo-pager-next-buttons class="text-info bg-warning"></kendo-pager-next-buttons>
     <kendo-pager-info class="text-success"></kendo-pager-info>
   </ng-template>
+
 </kendo-grid>

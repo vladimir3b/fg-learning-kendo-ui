@@ -1,0 +1,21 @@
+<kendo-tabstrip>
+  <kendo-tabstrip-tab [selected]="true">
+    <ng-template kendoTabTitle>
+      Tab 1
+      <button (click)='closeTab()' class="btn btn-outline-link">❌</button>
+    </ng-template>
+    <ng-template kendoTabContent>
+      <p>Tab 1 Content</p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+  <kendo-tabstrip-tab [title]="'Tab 2'">
+    <ng-template kendoTabContent>
+      <p>Tab 2 Content</p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+  <kendo-tabstrip-tab [title]="'Tab 3'">
+    <ng-template kendoTabContent>
+      <p>Tab 3 Content</p>
+    </ng-template>
+  </kendo-tabstrip-tab>
+</kendo-tabstrip>

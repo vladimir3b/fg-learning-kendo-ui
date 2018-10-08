@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.router';
 import { HomeComponent } from './component/home/home.component';
 import { KendoUiGridComponent } from './component/kendo-ui-grid/kendo-ui-grid.component';
+import { KendoUiTabstripComponent } from './component/kendo-ui-tabstrip/kendo-ui-tabstrip.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 @NgModule({
@@ -19,7 +22,8 @@ import { KendoUiGridComponent } from './component/kendo-ui-grid/kendo-ui-grid.co
     KendoUiWindowComponent,
     RootComponent,
     HomeComponent,
-    KendoUiGridComponent
+    KendoUiGridComponent,
+    KendoUiTabstripComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { KendoUiGridComponent } from './component/kendo-ui-grid/kendo-ui-grid.co
       path: '',
       component: HomeComponent
     }, ... APP_ROUTES ]),
-    GridModule
+    GridModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [RootComponent]
