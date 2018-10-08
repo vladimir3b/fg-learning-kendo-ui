@@ -1,21 +1,45 @@
-<kendo-tabstrip>
-  <kendo-tabstrip-tab [selected]="true">
+<kendo-tabstrip tabPosition="top">
+
+  <kendo-tabstrip-tab    
+    *ngFor="let tab of currentTabs; let index = index"
+    [selected]="index === 0">
     <ng-template kendoTabTitle>
-      Tab 1
-      <button (click)='closeTab()' class="btn btn-outline-link">❌</button>
+      {{ tab.caption }}
+      <button 
+        [disabled]="!tab.closable"
+        (click)='closeTab(index)' 
+        class="btn btn-link">
+        <span class="k-icon k-i-close"></span>
+      </button>
     </ng-template>
     <ng-template kendoTabContent>
-      <p>Tab 1 Content</p>
+    
+      {{ tab.content }}
     </ng-template>
   </kendo-tabstrip-tab>
-  <kendo-tabstrip-tab [title]="'Tab 2'">
-    <ng-template kendoTabContent>
-      <p>Tab 2 Content</p>
-    </ng-template>
-  </kendo-tabstrip-tab>
-  <kendo-tabstrip-tab [title]="'Tab 3'">
-    <ng-template kendoTabContent>
-      <p>Tab 3 Content</p>
-    </ng-template>
-  </kendo-tabstrip-tab>
+
 </kendo-tabstrip>
+
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col text-left">
+      <button 
+        type="button" 
+        class="btn btn-info btn-sm"
+        (click)="prevPage()" 
+        [disabled]="currentPage === 0">
+        Prev
+      </button>
+    </div>        
+    <div class="col text-right">
+      <button 
+        type="button" 
+        class="btn btn-info btn-sm"
+        (click)="nextPage()" 
+        [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+  </div>
+</div>  
