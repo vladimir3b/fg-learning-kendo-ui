@@ -12,7 +12,17 @@
         <span class="k-icon k-i-close"></span>
       </button>
     </ng-template>
-    <ng-template kendoTabContent>    
+    <ng-template kendoTabContent>  
+        <kendo-slider
+        [showButtons]="true"
+        [disabled]="false"
+        [tickPlacement]="'none'"
+        [max]="totalPages-1"
+        [min]="-1"
+        (valueChange)="sliderChange($event)"
+        [value]="startTabIndex - 1">
+      </kendo-slider>&nbsp;
+      <hr> 
       {{ tab.content }}
     </ng-template>
   </kendo-tabstrip-tab>
@@ -29,7 +39,7 @@
         [disabled]="!existsPreviousPage()">
         Prev
       </button>&nbsp; -->
-      <kendo-slider
+      <!-- <kendo-slider
         [showButtons]="true"
         [disabled]="false"
         [tickPlacement]="'none'"
@@ -37,7 +47,7 @@
         [min]="-1"
         (valueChange)="sliderChange($event)"
         [value]="startTabIndex - 1">
-      </kendo-slider>&nbsp;
+      </kendo-slider>&nbsp; -->
       <!-- <button 
         type="button" 
         class="btn btn-info"
