@@ -22,15 +22,15 @@
 <div class="container">
   <div class="row">
     <div class="col text-left">
-      <button 
+      <!-- <button 
         type="button" 
         class="btn btn-info"
         (click)="previousPage()" 
         [disabled]="!existsPreviousPage()">
         Prev
-      </button>&nbsp;
+      </button>&nbsp; -->
       <kendo-slider
-        [showButtons]="false"
+        [showButtons]="true"
         [disabled]="false"
         [tickPlacement]="'none'"
         [max]="totalPages-1"
@@ -38,13 +38,13 @@
         (valueChange)="sliderChange($event)"
         [value]="startTabIndex - 1">
       </kendo-slider>&nbsp;
-      <button 
+      <!-- <button 
         type="button" 
         class="btn btn-info"
         (click)="nextPage()" 
         [disabled]="!existsNextPage()">
         Next
-      </button>
+      </button> -->
     </div>
   </div>
 </div>   
