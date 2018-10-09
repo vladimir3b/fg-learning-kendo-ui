@@ -4,7 +4,11 @@
 @import "~@progress/kendo-theme-default/scss/all";
 
 $orderArrowColor: $warning;
+$activeTabBackgroundColor: $light;
+$activeTabBorderColor: rgba( $secondary, 0.5 );
+$tabBorderRadius: 10px;
 
+//grid sort arrows
 .k-grid-header .k-i-sort-asc-sm::before {
   content: "▲";
   color: $orderArrowColor !important;
@@ -14,6 +18,29 @@ $orderArrowColor: $warning;
   content: "▼";
   color: $orderArrowColor !important; 
   font-size: 25px;
+}
+
+// active tab caption
+.k-tabstrip .k-item.k-state-active {
+  background-color: $activeTabBackgroundColor;
+  border-color: $activeTabBorderColor;
+  border-top-left-radius: $tabBorderRadius;
+  border-top-right-radius: $tabBorderRadius;
+}
+.k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
+  border-bottom-color: $activeTabBackgroundColor;
+}
+
+//active tab content 
+.k-tabstrip > .k-content {
+  background-color: $activeTabBackgroundColor;  
+  border-color: $activeTabBorderColor;
+  border-bottom-right-radius: $tabBorderRadius;
+  border-bottom-left-radius: $tabBorderRadius;
+  padding: 20px;
+}
+.k-tabstrip-top > .k-tabstrip-items {
+  border-color: $activeTabBorderColor;  
 }
 
 

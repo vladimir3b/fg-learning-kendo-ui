@@ -36,7 +36,7 @@ export class KendoUiTabstripComponent implements OnInit {
     return this.tabsContent.length - PAGE_SIZE;
   }
   
-  public currentPage: number = 5;
+  public selectedIndex: number = 0;
   
 
   constructor () { }
@@ -172,40 +172,18 @@ export class KendoUiTabstripComponent implements OnInit {
 
   public closeTab(index: number): void {
     this.tabsContent.splice(this._hiddenTabIndex + index + 1, 1);
+    this.selectedIndex = index;
     if (!this.existsNextPage()) { 
       this.previousPage();
     }
   }
 
-  sliderChange($event) {
+  public sliderChange($event): void {
     this._hiddenTabIndex = $event;
   }
 
-
-
-  /**
-   * 
-   * 
-   * public totalPages = 0;
-   * public currentTabs = this.allTabs.slice(0, 2);
-   * 
-   * public pageSize: number = 2;
-   * public currentPage = 1;
-   * public nextPage() {
-   *  this.currentPage++;
-   *  this.currentTabs = this.allTabs.slice((this.currentPage - 1) * this.pageSize, (this.currentPage) * this.pageSize);
-   * }
-   * 
-   *
-   * public prevPage() {
-   *  this.currentPage--;
-   *  this.currentTabs = this.allTabs.slice((this.currentPage - 1) * this.pageSize, (this.currentPage) * this.pageSize);
-   * }
-   * 
-   * constructor () {
-   *  this.totalPages = Math.round(this.allTabs.length / this.pageSize);
-   * }
-   * 
-   */  
+  public needASlider(): boolean {
+    return this.totalPages >= 1;
+  }
 
 }

@@ -2,7 +2,7 @@
 
   <kendo-tabstrip-tab    
     *ngFor="let tab of tabsContent | slice:startTabIndex:endTabIndex; let index = index"
-    [selected]="index === 0">
+    [selected]="index === selectedIndex">
     <ng-template kendoTabTitle>
       {{ tab.caption }}
       <button 
@@ -12,23 +12,25 @@
         <span class="k-icon k-i-close"></span>
       </button>
     </ng-template>
-    <ng-template kendoTabContent>  
+    <ng-template kendoTabContent>        
+      <div *ngIf="needASlider()">       
         <kendo-slider
-        [showButtons]="true"
-        [disabled]="false"
-        [tickPlacement]="'none'"
-        [max]="totalPages-1"
-        [min]="-1"
-        (valueChange)="sliderChange($event)"
-        [value]="startTabIndex - 1">
-      </kendo-slider>&nbsp;
-      <hr> 
+          [showButtons]="true"
+          [disabled]="false"
+          [tickPlacement]="'none'"
+          [max]="totalPages-1"
+          [min]="-1"
+          (valueChange)="sliderChange($event)"
+          [value]="startTabIndex - 1">
+        </kendo-slider>&nbsp;
+        <hr> 
+      </div>
       {{ tab.content }}
     </ng-template>
   </kendo-tabstrip-tab>
 </kendo-tabstrip>
 
-<hr>
+
 <div class="container">
   <div class="row">
     <div class="col text-left">
