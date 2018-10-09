@@ -14,6 +14,8 @@ import { HomeComponent } from './component/home/home.component';
 import { KendoUiGridComponent } from './component/kendo-ui-grid/kendo-ui-grid.component';
 import { KendoUiTabstripComponent } from './component/kendo-ui-tabstrip/kendo-ui-tabstrip.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { SliderModule } from '@progress/kendo-angular-inputs';
+
 
 
 
@@ -35,7 +37,8 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
       component: HomeComponent
     }, ... APP_ROUTES ]),
     GridModule,
-    LayoutModule
+    LayoutModule,
+    SliderModule
   ],
   providers: [],
   bootstrap: [RootComponent]

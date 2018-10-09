@@ -8,6 +8,7 @@ interface ITab {
 
 const PAGE_SIZE: number = 3;
 
+
 @Component({
   selector: 'fg-app-kendo-ui-tabstrip',
   templateUrl: './kendo-ui-tabstrip.component.html',
@@ -15,23 +16,33 @@ const PAGE_SIZE: number = 3;
 })
 export class KendoUiTabstripComponent implements OnInit {
 
+  public valueHorizontal: number = 5;
+  public valueVertical: number = 5;
+  public min: number = 0;
+  public max: number = 15;
+  public smallStep: number = 1;
+
+  private _hiddenTabIndex: number;
+  public get startTabIndex(): number {
+    return this._hiddenTabIndex + 1;
+  };  
+  public get endTabIndex(): number {
+    return this.startTabIndex + PAGE_SIZE;
+  };  
+
   public tabsContent: Array<ITab>;
 
   public get totalPages(): number {
     return this.tabsContent.length - PAGE_SIZE;
   }
   
-  public get currentTabs(): Array<ITab> {
-    return this.tabsContent.slice(this.currentPage, this.currentPage + PAGE_SIZE );
-  }
-
-  public currentPage: number;
+  public currentPage: number = 5;
   
 
   constructor () { }
  
   ngOnInit() {
-    this.currentPage = 0;
+    this._hiddenTabIndex = -1;
     this.tabsContent = [
       {
         caption: 'Fusce laoreet sed justo 1',
@@ -141,17 +152,36 @@ export class KendoUiTabstripComponent implements OnInit {
     ];
   }
 
+  public existsNextPage(): boolean {
+    return this._hiddenTabIndex <= this.tabsContent.length - PAGE_SIZE - 2;
+  }
   public nextPage() {
-    this.currentPage++;      
+    if (this.existsNextPage()) {
+      this._hiddenTabIndex++; 
+    }      
   }
 
-  public prevPage() {
-      this.currentPage--;      
+  public existsPreviousPage(): boolean {
+    return this._hiddenTabIndex >= 0;
+  }
+  public previousPage() {
+    if (this.existsPreviousPage()) {
+      this._hiddenTabIndex--;      
+    }   
   }
 
-  public closeTab(index: number): void { 
-    this.tabsContent.splice(index, 1);
+  public closeTab(index: number): void {
+    this.tabsContent.splice(this._hiddenTabIndex + index + 1, 1);
+    if (!this.existsNextPage()) { 
+      this.previousPage();
+    }
   }
+
+  sliderChange($event) {
+    this._hiddenTabIndex = $event;
+  }
+
+
 
   /**
    * 

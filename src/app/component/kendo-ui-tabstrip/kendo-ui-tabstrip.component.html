@@ -1,7 +1,7 @@
 <kendo-tabstrip tabPosition="top">
 
   <kendo-tabstrip-tab    
-    *ngFor="let tab of currentTabs; let index = index"
+    *ngFor="let tab of tabsContent | slice:startTabIndex:endTabIndex; let index = index"
     [selected]="index === 0">
     <ng-template kendoTabTitle>
       {{ tab.caption }}
@@ -12,12 +12,10 @@
         <span class="k-icon k-i-close"></span>
       </button>
     </ng-template>
-    <ng-template kendoTabContent>
-    
+    <ng-template kendoTabContent>    
       {{ tab.content }}
     </ng-template>
   </kendo-tabstrip-tab>
-
 </kendo-tabstrip>
 
 <hr>
@@ -26,20 +24,27 @@
     <div class="col text-left">
       <button 
         type="button" 
-        class="btn btn-info btn-sm"
-        (click)="prevPage()" 
-        [disabled]="currentPage === 0">
+        class="btn btn-info"
+        (click)="previousPage()" 
+        [disabled]="!existsPreviousPage()">
         Prev
-      </button>
-    </div>        
-    <div class="col text-right">
+      </button>&nbsp;
+      <kendo-slider
+        [showButtons]="false"
+        [disabled]="false"
+        [tickPlacement]="'none'"
+        [max]="totalPages-1"
+        [min]="-1"
+        (valueChange)="sliderChange($event)"
+        [value]="startTabIndex - 1">
+      </kendo-slider>&nbsp;
       <button 
         type="button" 
-        class="btn btn-info btn-sm"
+        class="btn btn-info"
         (click)="nextPage()" 
-        [disabled]="currentPage === totalPages">
+        [disabled]="!existsNextPage()">
         Next
       </button>
     </div>
   </div>
-</div>  
+</div>   
