@@ -172,7 +172,7 @@ export class KendoUiTabstripComponent implements OnInit {
 
   public closeTab(index: number): void {
     this.tabsContent.splice(this._hiddenTabIndex + index + 1, 1);
-    this.selectedIndex = index;
+    this.selectedIndex = index; // must be corrected
     if (!this.existsNextPage()) { 
       this.previousPage();
     }
