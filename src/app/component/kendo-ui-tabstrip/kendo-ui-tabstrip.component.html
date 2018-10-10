@@ -1,10 +1,12 @@
-<kendo-tabstrip tabPosition="top">
+<kendo-tabstrip 
+  (tabSelect)="selected($event)"
+  tabPosition="top">
 
   <kendo-tabstrip-tab    
     *ngFor="let tab of tabsContent | slice:startTabIndex:endTabIndex; let index = index"
     [selected]="index === selectedIndex">
     <ng-template kendoTabTitle>
-      {{ tab.caption }}
+      {{ tab.caption }} index: {{ index }}
       <button 
         [disabled]="!tab.closable"
         (click)='closeTab(index)' 

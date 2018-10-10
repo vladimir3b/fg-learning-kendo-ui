@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SelectEvent } from '@progress/kendo-angular-layout';
 
 interface ITab {
   caption: string;
@@ -6,7 +7,7 @@ interface ITab {
   content: string;
 }
 
-const PAGE_SIZE: number = 3;
+const PAGE_SIZE: number =5;
 
 
 @Component({
@@ -15,12 +16,6 @@ const PAGE_SIZE: number = 3;
   styleUrls: ['./kendo-ui-tabstrip.component.scss']
 })
 export class KendoUiTabstripComponent implements OnInit {
-
-  public valueHorizontal: number = 5;
-  public valueVertical: number = 5;
-  public min: number = 0;
-  public max: number = 15;
-  public smallStep: number = 1;
 
   private _hiddenTabIndex: number;
   public get startTabIndex(): number {
@@ -172,7 +167,9 @@ export class KendoUiTabstripComponent implements OnInit {
 
   public closeTab(index: number): void {
     this.tabsContent.splice(this._hiddenTabIndex + index + 1, 1);
-    this.selectedIndex = index; //(index <= this.tabsContent.length - 1) ? index : this.tabsContent.length - 1; // must be corrected
+    if (this.selectedIndex >= this.tabsContent.length) {
+      this.selectedIndex = this.tabsContent.length - 1;
+    }
     if (!this.existsNextPage()) { 
       this.previousPage();
     }
@@ -184,6 +181,11 @@ export class KendoUiTabstripComponent implements OnInit {
 
   public needASlider(): boolean {
     return this.totalPages >= 1;
+  }
+
+  public selected($event: SelectEvent): void {
+    this.selectedIndex = $event.index;
+    // console.log(this.selectedIndex, this.tabsContent.length);
   }
 
 }
