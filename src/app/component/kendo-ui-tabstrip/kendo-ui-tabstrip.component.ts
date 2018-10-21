@@ -7,7 +7,7 @@ interface ITab {
   content: string;
 }
 
-const PAGE_SIZE: number =5;
+const PAGE_SIZE: number = 8;
 
 
 @Component({
